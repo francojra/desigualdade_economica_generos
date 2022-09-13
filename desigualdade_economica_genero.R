@@ -16,6 +16,8 @@
 # Carregar pacotes -------------------------------------------------------------------------------------------------------------------------
 
 library(tidyverse)
+library(cols4all)
+library(RColorBrewer)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -40,3 +42,18 @@ desg1 <- desg %>%
             n = n(),
             se = sd/sqrt(n)) %>%
   view()
+
+# Gráficos ---------------------------------------------------------------------------------------------------------------------------------
+
+### Seleção de cores
+
+c4a_gui()
+c4a("paired", 10)
+
+ggplot(desg1, aes(x = Entity, y = media, fill = Entity)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se)) +
+  scale_fill_manual(values = c("#A6CEE3", "#1F78B4", "#B2DF8A",
+ "#33A02C", "#FB9A99", "#E31A1C",
+ "#FDBF6F", "#FF7F00", 
+ "#CAB2D6","#6A3D9A"))
