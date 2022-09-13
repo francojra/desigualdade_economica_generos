@@ -43,6 +43,14 @@ desg1 <- desg %>%
             se = sd/sqrt(n)) %>%
   view()
 
+desg2 <- desg %>%
+  filter(Entity %in% c("Brazil", "United States", "United Kingdom",
+                       "Australia", "South Korea", "France", "Italy",
+                       "China", "Spain", "Colombia")) %>%
+  group_by(Year) %>%
+  summarise() %>%
+  view()
+
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
 
 ### Seleção de cores
@@ -50,10 +58,21 @@ desg1 <- desg %>%
 c4a_gui()
 c4a("paired", 10)
 
-ggplot(desg1, aes(x = Entity, y = media, fill = Entity)) +
+ggplot(desg1, aes(x = fct_reorder(Entity, media), 
+                  y = media, fill = Entity)) +
   geom_col() +
-  geom_errorbar(aes(ymin = media - se, ymax = media + se)) +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se),
+                width = 0.3, size = 0.8) +
   scale_fill_manual(values = c("#A6CEE3", "#1F78B4", "#B2DF8A",
- "#33A02C", "#FB9A99", "#E31A1C",
- "#FDBF6F", "#FF7F00", 
- "#CAB2D6","#6A3D9A"))
+                               "#33A02C", "#FB9A99", "#E31A1C",
+                               "#FDBF6F", "#FF7F00", "#CAB2D6",
+                               "#6A3D9A", "#FFFF99")) +
+  labs(y = "Diferenças na média de salários (%)",
+       x = "Países") +
+  theme(legend.position = "none", 
+        axis.text = element_text(size = 10, color = "black"))
+
+ggplot(desg2, aes(x = Year, y = desigualdade, group = 1)) +
+  geom_point() +
+  geom_line()
+  
