@@ -29,3 +29,14 @@ desg <- desg %>%
   select(Entity, Year, Gender.wage.gap....) %>%
   rename(desigualdade = Gender.wage.gap....) %>%
   view()
+
+desg1 <- desg %>%
+  filter(Entity %in% c("Brazil", "United States", "United Kingdom",
+                       "Australia", "South Korea", "France", "Italy",
+                       "China", "Spain", "Colombia")) %>%
+  group_by(Entity) %>%
+  summarise(media = mean(desigualdade),
+            sd = sd(desigualdade),
+            n = n(),
+            se = sd/sqrt(n)) %>%
+  view()
