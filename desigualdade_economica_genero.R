@@ -48,7 +48,7 @@ desg2 <- desg %>%
                        "Australia", "South Korea", "France", "Italy",
                        "China", "Spain", "Colombia")) %>%
   group_by(Year) %>%
-  summarise() %>%
+  summarise(media = mean(desigualdade)) %>%
   view()
 
 # Gráficos ---------------------------------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ ggplot(desg1, aes(x = fct_reorder(Entity, media),
   theme(legend.position = "none", 
         axis.text = element_text(size = 10, color = "black"))
 
-ggplot(desg2, aes(x = Year, y = desigualdade, group = 1)) +
-  geom_point() +
-  geom_line()
+ggplot(desg2, aes(x = Year, y = media, group = 1)) +
+  geom_point(size = 2.6) +
+  geom_line(size = 1.2, col = "#FF7F00")
   
