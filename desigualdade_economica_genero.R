@@ -13,6 +13,19 @@
 ### Embora as desigualdades de gêneros permaneçam comuns e grandes, hoje
 ### são menores do que era algumas décadas atrás.
 
+# Carregar pacotes -------------------------------------------------------------------------------------------------------------------------
 
+library(tidyverse)
 
+# Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
+desg <- read.csv("gender-gap-in-average-wages-ilo.csv")
+view(desg)
+names(desg)
+
+# Manipular dados --------------------------------------------------------------------------------------------------------------------------
+
+desg <- desg %>%
+  select(Entity, Year, Gender.wage.gap....) %>%
+  rename(desigualdade = Gender.wage.gap....) %>%
+  view()
