@@ -1,6 +1,6 @@
 
 # Desigualdade econômica entre gêneros -----------------------------------------------------------------------------------------------------
-# Auotria do script: Jeanne Franco ---------------------------------------------------------------------------------------------------------
+# Autoria do script: Jeanne Franco ---------------------------------------------------------------------------------------------------------
 # Data: 12/09/22 ---------------------------------------------------------------------------------------------------------------------------
 # Referência: https://ourworldindata.org/economic-inequality-by-gender ---------------------------------------------------------------------
 
@@ -72,7 +72,9 @@ ggplot(desg1, aes(x = fct_reorder(Entity, media),
   theme(legend.position = "none", 
         axis.text = element_text(size = 10, color = "black"))
 
-ggplot(desg2, aes(x = Year, y = media, group = 1)) +
+ggplot(desg2, aes(x = Year, y = media)) +
   geom_point(size = 2.6) +
-  geom_line(size = 1.2, col = "#FF7F00")
+  geom_line(size = 1.2, col = "#FF7F00") +
+  labs(x = "Tempo (anos)", y = "Diferenças na média de salários (%)") +
+  theme(axis.text = element_text(size = 10, color = "black"))
   
